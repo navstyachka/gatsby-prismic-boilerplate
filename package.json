@@ -4,6 +4,33 @@
   "description": "A starter powered by Gatsby and Prismic to showcase portfolios and blogs.",
   "version": "0.1.0",
   "author": "Marguerite Roth | marguerite.io | marguerite.roth@gmail.com",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
+    "lint": "npm run lint:css && npm run lint:js && npm run lint:prettier",
+    "lint:js": "eslint --ext .js,.jsx .",
+    "lint:css": "stylelint 'src/**/*.js'",
+    "lint:prettier": "prettier -l {,src/**/}*.{js,jsx,json,css,scss}",
+    "lint:prettier:format": "prettier --write \"src/**/*.js\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-push": "yarn test"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.12",
@@ -37,7 +64,19 @@
     "smooth-scroll": "^16.0.3"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "babel-eslint": "^10.0.3",
+    "dotenv": "^8.1.0",
+    "eslint": "^6.4.0",
+    "eslint-config-hyam": "https://github.com/hyamstudios/eslint-config-hyam.git",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-cypress": "^2.6.1",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react-hooks": "^2.0.1",
     "gatsby-plugin-remove-trailing-slashes": "^2.0.11",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.2.5",
     "prettier": "^1.17.1"
   },
   "keywords": [
@@ -47,14 +86,6 @@
     "portfolio"
   ],
   "license": "MIT",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write src/**/*.{js,jsx}",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/margueriteroth/gatsby-prismic-starter-prist"
