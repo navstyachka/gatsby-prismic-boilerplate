@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Prist | Gatsby & Prismic Starter`,
-        description: `A starter powered by Gatsby and Prismic to showcase portfolios and blogs.`,
+    description: `A starter powered by Gatsby and Prismic to showcase portfolios and blogs.`,
     author: `Marguerite Roth | marguerite.io`,
   },
   plugins: [
@@ -24,11 +24,27 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-        resolve: 'gatsby-source-prismic-graphql',
-        options: {
-            repositoryName: 'prist', // (REQUIRED, replace with your own)
-            linkResolver: () => post => `/${post.uid}`,
-        }
+      resolve: "gatsby-source-prismic-graphql",
+      options: {
+        repositoryName: "gatsby-source-prismic-test-site", // (required)
+        accessToken: "...", // (optional)
+        prismicRef: "...", // (optional, if not used then defaults to master ref. This option is useful for a/b experiments)
+        path: "/preview", // (optional, default: /preview)
+        previews: true, // (optional, default: false)
+        pages: [
+          {
+            // (optional)
+            type: "Article", // TypeName from prismic
+            match: "/article/:uid", // Pages will be generated under this pattern (optional)
+            path: "/article", // Placeholder page for unpublished documents
+            component: require.resolve("./src/templates/article.js"),
+          },
+        ],
+        sharpKeys: [
+          /image|photo|picture/, // (default)
+          "profilepic",
+        ],
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,
@@ -44,11 +60,11 @@ module.exports = {
     },
     // https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/
     {
-        resolve: `gatsby-plugin-google-analytics`,
-        options: {
-            trackingId: "YOUR_GOOGLE_ANALYTICS_TRACKING_ID",
-            head: true,
-        },
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "YOUR_GOOGLE_ANALYTICS_TRACKING_ID",
+        head: true,
+      },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline

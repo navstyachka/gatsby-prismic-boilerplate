@@ -4,8 +4,7 @@ A light-themed starter powered by [Gatsby v2](https://www.gatsbyjs.org) and [Pri
 
 <img width="1280" alt="prist" src="https://user-images.githubusercontent.com/5288685/63654882-51787e00-c746-11e9-9e9e-2ab823129d93.png">
 
-
-### 👩‍💻 [Demo website](http://prist.marguerite.io)
+👩‍💻 [Demo website](http://prist.marguerite.io)
 
 ## ✨ Features
 
@@ -18,14 +17,14 @@ A light-themed starter powered by [Gatsby v2](https://www.gatsbyjs.org) and [Pri
 
 ## 🚀 Getting Started
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/margueriteroth/gatsby-prismic-starter-prist)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/hyamstudios/tool-gatsby-prismic-netlify-boilerplate)
 
 1. **Create a Gatsby site.**
 
 Use the Gatsby CLI to create a new site, specifying this project. If you don't have the CLI installed already, see [Gastby instructions](https://www.gatsbyjs.org/tutorial/part-zero/#using-the-gatsby-cli).
 
 ```sh
-gatsby new YOUR-PROJECT-NAME https://github.com/margueriteroth/gatsby-prismic-starter-prist
+gatsby new YOUR-PROJECT-NAME https://github.com/hyamstudios/tool-gatsby-prismic-netlify-boilerplate
 ```
 
 2. **Start developing.**
@@ -44,7 +43,6 @@ Your site is now running at `http://localhost:8000`!
 
 _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
 
-
 ## 👩‍🎤 Configuring Prismic
 
 1. **Create account and repo**
@@ -55,7 +53,7 @@ Head over to [Prismic](https://prismic.io/signup) and create your new account. O
 
 In your `gatsby-config.js` file, add your Prismic Repo name to the `repositoryName` field:
 
-```
+```js
 `gatsby-plugin-sharp`,
     {
         resolve: 'gatsby-source-prismic-graphql',
@@ -64,11 +62,11 @@ In your `gatsby-config.js` file, add your Prismic Repo name to the `repositoryNa
         }
     },
 ```
+
 3. **Define your Custom Types**
 
 This starter uses 3 Custom Types:
 ![image](https://user-images.githubusercontent.com/5288685/62646196-c01ea480-b91b-11e9-8d30-d9fbf8d1df36.png)
-
 
 3a. **Homepage**
 
@@ -77,14 +75,15 @@ This starter uses 3 Custom Types:
 Create the following fields.
 
 API IDs:
-* uid
-* hero_title
-* hero_button_text
-* hero_button_link
-* content
-* about_title
-* about_bio
-* about_links
+
+- uid
+- hero_title
+- hero_button_text
+- hero_button_link
+- content
+- about_title
+- about_bio
+- about_links
 
 Head over to Content and create a new page using the Homepage Custom Type:
 ![image](https://user-images.githubusercontent.com/5288685/62645767-e4c64c80-b91a-11e9-8baf-c1ead93a9b5f.png)
@@ -95,7 +94,6 @@ Remember to save and publish! Repeat for other Custom Types.
 
 ![image](https://user-images.githubusercontent.com/5288685/62645940-3b338b00-b91b-11e9-9684-9ca5b98882a7.png)
 ![image](https://user-images.githubusercontent.com/5288685/62645970-4d152e00-b91b-11e9-89db-b2b0ac4e26a1.png)
-
 
 3c. **Project**
 
