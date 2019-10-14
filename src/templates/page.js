@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import values from 'lodash/values'
-// import Page from '../components/Page'
+import Page from '../components/Page'
 import * as Fragments from '../fragments/PageBodySlices'
 
 export const query = graphql`
@@ -14,6 +14,9 @@ export const query = graphql`
               uid
             }
             title
+            body {
+              ...PageBodyAllSlices
+            }
           }
         }
       }
@@ -21,10 +24,8 @@ export const query = graphql`
   }
 `
 
-const PageContainer = props => {
-  const title = { props }
-  return <div>Page {title}</div>
-}
+// eslint-disable-next-line react/jsx-props-no-spreading
+const PageContainer = props => <Page {...props} />
 PageContainer.fragments = values(Fragments)
 
 export default PageContainer
