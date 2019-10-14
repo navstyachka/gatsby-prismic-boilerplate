@@ -1,14 +1,19 @@
 module.exports = {
-  extends: ["hyam"],
+  extends: ['hyam'],
   settings: {
-    "import/resolver": {
+    'import/resolver': {
       node: {
-        paths: ["src"],
+        paths: ['src'],
       },
     },
   },
-  plugins: ["cypress", "react-hooks"],
+  rules: {
+    'react/forbid-prop-types': [0, { properties: 'never' }],
+    camelcase: [0, { properties: 'never' }],
+    'no-underscore-dangle': [0, { properties: 'never' }],
+  },
+  plugins: ['cypress', 'react-hooks'],
   env: {
-    "cypress/globals": true,
+    'cypress/globals': true,
   },
 }

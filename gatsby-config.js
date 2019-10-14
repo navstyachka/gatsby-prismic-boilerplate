@@ -1,3 +1,9 @@
+const config = require('./config')
+const {
+  previewLinkResolver,
+  getPreviewDirectory,
+} = require('./src/utils/linkResolver')
+
 module.exports = {
   siteMetadata: {
     title: `Prist | Gatsby & Prismic Starter`,
@@ -5,69 +11,106 @@ module.exports = {
     author: `Marguerite Roth | marguerite.io`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    `gatsby-image`,
-    `gatsby-plugin-catch-links`,
-    `gatsby-plugin-sass`,
-    `gatsby-plugin-resolve-src`,
-    `gatsby-plugin-remove-trailing-slashes`,
-    `gatsby-plugin-emotion`,
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-styled-components',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
+    'gatsby-image',
+    'gatsby-plugin-catch-links',
+    'gatsby-plugin-sass',
+    'gatsby-plugin-resolve-src',
+    'gatsby-plugin-remove-trailing-slashes',
+    'gatsby-plugin-emotion',
+    'gatsby-plugin-purgecss',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `images`,
+        name: 'images',
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     {
-      resolve: "gatsby-source-prismic-graphql",
+      resolve: 'gatsby-source-prismic-graphql',
       options: {
-        repositoryName: "gatsby-source-prismic-test-site", // (required)
-        accessToken: "...", // (optional)
-        prismicRef: "...", // (optional, if not used then defaults to master ref. This option is useful for a/b experiments)
-        path: "/preview", // (optional, default: /preview)
-        previews: true, // (optional, default: false)
+        repositoryName: 'initial',
+        defaultLang: config.defaultLang,
+        path: '/preview',
+        previews: true,
+        /**
+         * The setup below renders only INTERNAL PREVIEW links
+         * Pages used for the public website is created in `gatsby-node.js`
+         * Make sure the `typesNeedUnpublishedPagePreview` in `src/prismic/linkResolver.js` is in sync with the options below.
+         * Please do not add Single Type here as they usually are already published and you cannot create multiple instances for those types.
+         */
         pages: [
           {
-            // (optional)
-            type: "Article", // TypeName from prismic
-            match: "/article/:uid", // Pages will be generated under this pattern (optional)
-            path: "/article", // Placeholder page for unpublished documents
-            component: require.resolve("./src/templates/article.js"),
+            type: 'Page',
+            match: previewLinkResolver({ type: 'page', uid: ':uid' }),
+            path: getPreviewDirectory('page'),
+            component: require.resolve('./src/templates/page.js'),
           },
         ],
-        sharpKeys: [
-          /image|photo|picture/, // (default)
-          "profilepic",
-        ],
+        sharpKeys: [/image|photo|picture|logo/],
       },
     },
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: `gatsby-prismic-starter-prist`,
+        name: 'gatsby-prismic-starter-prist',
         short_name: `prist`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#000`,
+        theme_color: `#000`,
         display: `minimal-ui`,
         icon: `src/images/icon.png`, // This path is relative to the root of the site.
       },
     },
-    // https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: "YOUR_GOOGLE_ANALYTICS_TRACKING_ID",
+        trackingId: 'YOUR_GOOGLE_ANALYTICS_TRACKING_ID',
         head: true,
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: `${__dirname}/src/images/svg`,
+        },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        exclude: [
+          '/preview',
+          '/preview/**/*',
+          '/internal-preview',
+          '/internal-preview/**/*',
+        ],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-netlify',
+      options: {
+        headers: {
+          '/*.js': [
+            'Cache-Control: public, max-age=0, must-revalidate',
+            'Content-Type: text/javascript',
+          ],
+        },
+        mergeLinkHeaders: false,
+        mergeCachingHeaders: false,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-nprogress',
+      options: {
+        color: '#000',
+      },
+    },
   ],
 }

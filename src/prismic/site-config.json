@@ -1,0 +1,24 @@
+{
+  "SEO" : {
+    "site_title" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Site Title"
+      }
+    },
+    "site_description" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Site Description"
+      }
+    },
+    "site_preview_image" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : { },
+        "thumbnails" : [ ],
+        "label" : "Site Preview Image"
+      }
+    }
+  }
+}

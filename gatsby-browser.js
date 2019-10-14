@@ -1,10 +1,6 @@
+const { registerLinkResolver } = require('gatsby-source-prismic-graphql')
+const { previewLinkResolver } = require('./src/utils/linkResolver')
 /**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
+ * We register `previewLinkResolver` here for preview setup
  */
-
-// const { registerLinkResolver } = require('gatsby-source-prismic-graphql');
-// const { linkResolver } = require('./src/utils/prismic-configuration');
-
-// registerLinkResolver(linkResolver);
+registerLinkResolver(previewLinkResolver)

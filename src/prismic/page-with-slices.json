@@ -1,0 +1,213 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "URL slug",
+        "placeholder": "slug"
+      }
+    },
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Page Title"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "choices": {
+          "quote": {
+            "type": "Slice",
+            "fieldset": "Quote Block",
+            "description": "Creates a quote block",
+            "icon": "chat_bubble_outline",
+            "non-repeat": {
+              "content": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "em",
+                  "label": "Quote",
+                  "placeholder": "Your quote"
+                }
+              },
+              "author": {
+                "type": "Text",
+                "config": {
+                  "label": "Author name"
+                }
+              },
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": null,
+                    "height": null
+                  },
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              }
+            },
+            "repeat": {},
+            "display": "list"
+          },
+          "text": {
+            "type": "Slice",
+            "fieldset": "Text Block",
+            "description": "Create an independent block of text",
+            "icon": "text_fields",
+            "non-repeat": {
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title"
+                }
+              },
+              "content": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+                  "label": "Content",
+                  "placeholder": "Your content here"
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "allowTargetBlank": true,
+                  "label": "Link"
+                }
+              },
+              "link_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Link title"
+                }
+              }
+            },
+            "repeat": {},
+            "display": "list"
+          },
+          "hero_block": {
+            "type": "Slice",
+            "fieldset": "Hero Block",
+            "description": "Splash your page with big image and headline",
+            "icon": "visibility",
+            "display": "list",
+            "non-repeat": {
+              "kicker": {
+                "type": "Text",
+                "config": {
+                  "label": "Kicker"
+                }
+              },
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title"
+                }
+              },
+              "content": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, strong, em",
+                  "label": "Content"
+                }
+              },
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "full-width_image": {
+            "type": "Slice",
+            "fieldset": "Full-width Image",
+            "description": "Create a great image across your page",
+            "icon": "image",
+            "display": "list",
+            "non-repeat": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "text_plus_image": {
+            "type": "Slice",
+            "fieldset": "Text plus image",
+            "description": "Create an iformational block with one omage on a side",
+            "icon": "art_track",
+            "display": "list",
+            "non-repeat": {
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title"
+                }
+              },
+              "content": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+                  "allowTargetBlank": true,
+                  "label": "Content"
+                }
+              },
+              "position": {
+                "type": "Select",
+                "config": {
+                  "options": [
+                    "Right",
+                    "Left"
+                  ],
+                  "default_value": "Right",
+                  "label": "Image position"
+                }
+              },
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              }
+            },
+            "repeat": {}
+          }
+        }
+      }
+    }
+  },
+  "SEO": {
+    "description": {
+      "type": "Text",
+      "config": {
+        "label": "Description",
+        "placeholder": "Page-specific description text"
+      }
+    },
+    "page_preview_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Page Preview Image"
+      }
+    }
+  }
+}
