@@ -1,6 +1,6 @@
 const trimEnd = require('lodash/trimEnd')
 
-const homePageUIDs = ['homepage']
+const homePageUIDs = ['home']
 const typesNeedUnpublishedPagePreview = ['page']
 
 const parseUID = uid => {
