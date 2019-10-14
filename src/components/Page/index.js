@@ -15,8 +15,6 @@ const Page = props => {
   const node = get(props, 'data.prismic.allPages.edges[0].node') || {}
   const { title, body } = node
 
-  console.log(body)
-
   return (
     <Layout>
       {title && <SEO title={RichText.asText(title)} />}
