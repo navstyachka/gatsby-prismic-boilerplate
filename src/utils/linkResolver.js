@@ -12,11 +12,22 @@ const parseUID = uid => {
 
 const linkResolver = doc => {
   const type = doc.type.toLowerCase()
-  const uid = parseUID(doc.uid)
+  // const uid = parseUID(doc.uid)
+  const uid = doc.uid
 
-  if (type === 'page') return `/${uid}`
+  switch (type) {
+    case 'article':
+      return `/article/${uid}`
 
-  return '/'
+    case 'event':
+      return `/event/${uid}`
+
+    case 'home':
+      return '/'
+
+    default:
+      return `/${uid}`
+  }
 }
 
 const previewLinkResolver = doc => {

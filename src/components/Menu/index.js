@@ -3,7 +3,7 @@ import React from 'react'
 import { graphql, StaticQuery, Link } from 'gatsby'
 import { withPreview } from 'gatsby-source-prismic-graphql'
 
-import css from './styles.module.scss'
+// import css from './styles.module.scss'
 import linkResolver from '../../utils/linkResolver'
 
 const query = graphql`
@@ -33,18 +33,16 @@ const Menu = ({ menu }) => {
   console.log('-=======', menu)
 
   return (
-    <section className={css.wrapper}>
+    <section>
       <nav>
         {links.map(
           ({ link }) =>
-            link.documentMeta && (
+            link._meta && (
               <Link
-                to={linkResolver(link.documentMeta)}
-                className={css.link}
-                activeClassName={css.active}
-                key={link.documentMeta.uid}
+                to={linkResolver.linkResolver(link._meta)}
+                key={link._meta.uid}
               >
-                {link.documentMeta.uid}
+                {link._meta.uid}
               </Link>
             )
         )}
