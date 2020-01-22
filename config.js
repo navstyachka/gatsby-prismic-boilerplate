@@ -6,7 +6,8 @@ module.exports = {
     author: 'Website author',
     siteUrl: 'Website URL',
   },
-  defaultLang: 'en-de',
+  prismicRepoName: 'initial',
+  defaultLang: 'en-gb',
   themeColor: '#000000',
   backgroundColor: '#ffffff',
 }

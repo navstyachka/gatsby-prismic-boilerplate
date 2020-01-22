@@ -34,7 +34,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-prismic-graphql',
       options: {
-        repositoryName: 'initial',
+        repositoryName: config.prismicRepoName,
         defaultLang: config.defaultLang,
         path: '/preview',
         previews: true,
@@ -45,12 +45,12 @@ module.exports = {
          * Please do not add Single Type here as they usually are already published and you cannot create multiple instances for those types.
          */
         pages: [
-          {
-            type: 'Page',
-            match: previewLinkResolver({ type: 'page', uid: ':uid' }),
-            path: getPreviewDirectory('page'),
-            component: require.resolve('./src/templates/page.js'),
-          },
+          // {
+          //   type: 'Page',
+          //   match: previewLinkResolver({ type: 'page', uid: ':uid' }),
+          //   path: getPreviewDirectory('page'),
+          //   component: require.resolve('./src/templates/page.js'),
+          // },
         ],
         sharpKeys: [/image|photo|picture|logo/],
       },

@@ -1,0 +1,83 @@
+@import '../../styles/vars.scss';
+@import '../../styles/typography.scss';
+
+.wrapper {
+  max-width: 56%;
+  text-align: center;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  padding-top: 118px;
+  background: #fff;
+  z-index: 999;
+}
+
+.link {
+  display: block;
+  margin: 0 20px;
+  padding: 16px;
+  line-height: (28/16);
+  text-align: center;
+  text-transform: capitalize;
+
+  &:hover {
+    color: $color-orange100;
+  }
+}
+
+.active {
+  font-weight: bold;
+  color: $color-orange100;
+}
+
+.leadsButton {
+  position: relative;
+  z-index: 99999;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.showMenu {
+  display: block;
+}
+
+// ------------------------------------------------------------------
+@media (min-width: $break-md) {
+  .link {
+    font-size: 32px;
+    line-height: (48/32);
+  }
+}
+
+// ------------------------------------------------------------------
+@media (min-width: $break-lg) {
+  .nav {
+    position: relative;
+    display: block;
+    flex: 1;
+    z-index: 7;
+
+    width: auto;
+    height: auto;
+    padding-top: 0;
+    background: transparent;
+  }
+
+  .link {
+    display: inline-block;
+    margin: 0 20px;
+    padding: 0;
+    line-height: (28/16);
+    font-size: 16px;
+  }
+
+  .leadsButton {
+    display: none;
+  }
+}
