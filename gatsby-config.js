@@ -20,7 +20,6 @@ module.exports = {
     'gatsby-plugin-sass',
     'gatsby-plugin-resolve-src',
     'gatsby-plugin-remove-trailing-slashes',
-    'gatsby-plugin-emotion',
     'gatsby-plugin-purgecss',
     {
       resolve: 'gatsby-source-filesystem',
