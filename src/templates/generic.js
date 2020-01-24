@@ -1,19 +1,23 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+import get from 'lodash/get'
 
 import Layout from '../components/Layout'
 
 export const query = graphql`
-  query TestQuery {
+  query GenericQuery($uid: String) {
     prismic {
-      data: _allDocuments {
+      generic: allGenerics(uid: $uid) {
         edges {
           node {
             _meta {
-              uid
+              id
               type
+              uid
             }
+            meta_title
+            meta_description
+            meta_image
           }
         }
       }
@@ -21,24 +25,12 @@ export const query = graphql`
   }
 `
 
-const PageContainer = ({
-  data: {
-    prismic: { data },
-  },
-}) => {
+export default props => {
+  const data = get(props, 'data.prismic.generic.edges[0].node')
+
   return (
     <Layout {...data}>
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </Layout>
   )
 }
-
-PageContainer.propTypes = {
-  data: PropTypes.shape({
-    prismic: PropTypes.shape({
-      data: PropTypes.shape({}).isRequired,
-    }).isRequired,
-  }).isRequired,
-}
-
-export default PageContainer

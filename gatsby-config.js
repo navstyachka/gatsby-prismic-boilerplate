@@ -4,8 +4,18 @@ const {
   getPreviewDirectory,
 } = require('./src/utils/linkResolver')
 
+const {
+  NODE_ENV,
+  URL: NETLIFY_SITE_URL = 'https://www.example.com',
+  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
+  CONTEXT: NETLIFY_ENV = NODE_ENV,
+} = process.env
+const isNetlifyProduction = NETLIFY_ENV === 'production'
+const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
+
 module.exports = {
   siteMetadata: {
+    siteUrl,
     title: `Prist | Gatsby & Prismic Starter`,
     description: `A starter powered by Gatsby and Prismic to showcase portfolios and blogs.`,
     author: `Marguerite Roth | marguerite.io`,
@@ -44,12 +54,18 @@ module.exports = {
          * Please do not add Single Type here as they usually are already published and you cannot create multiple instances for those types.
          */
         pages: [
-          // {
-          //   type: 'Page',
-          //   match: previewLinkResolver({ type: 'page', uid: ':uid' }),
-          //   path: getPreviewDirectory('page'),
-          //   component: require.resolve('./src/templates/page.js'),
-          // },
+          {
+            type: 'Post',
+            match: previewLinkResolver({ type: 'post', uid: ':uid' }),
+            path: getPreviewDirectory('post'),
+            component: require.resolve('./src/templates/post.js'),
+          },
+          {
+            type: 'Generic',
+            match: previewLinkResolver({ type: 'generic', uid: ':uid' }),
+            path: getPreviewDirectory('generic'),
+            component: require.resolve('./src/templates/generic.js'),
+          },
         ],
         sharpKeys: [/image|photo|picture|logo/],
       },

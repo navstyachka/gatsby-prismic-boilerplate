@@ -1,7 +1,7 @@
 const trimEnd = require('lodash/trimEnd')
 
 const homePageUIDs = ['home']
-const typesNeedUnpublishedPagePreview = ['page']
+const typesNeedUnpublishedPagePreview = ['generic', 'post']
 
 const parseUID = uid => {
   if (homePageUIDs.indexOf(uid) > -1) {
@@ -12,8 +12,7 @@ const parseUID = uid => {
 
 const linkResolver = doc => {
   const type = doc.type.toLowerCase()
-  // const uid = parseUID(doc.uid)
-  const uid = doc.uid
+  const uid = parseUID(doc.uid)
 
   switch (type) {
     case 'article':

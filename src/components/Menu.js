@@ -5,7 +5,7 @@ import { withPreview } from 'gatsby-source-prismic-graphql'
 import styled from 'styled-components'
 
 // import css from './styles.module.scss'
-import linkResolver from '../utils/linkResolver'
+import { linkResolver } from '../utils/linkResolver'
 
 // data
 // ==========================================================================================
@@ -17,6 +17,13 @@ const query = graphql`
           link {
             _linkType
             ... on PRISMIC_Post {
+              meta: _meta {
+                id
+                uid
+                type
+              }
+            }
+            ... on PRISMIC_Generic {
               meta: _meta {
                 id
                 uid
@@ -42,18 +49,13 @@ const Link = styled(GatsbyLink)`
 const Menu = ({ menu }) => {
   const links = menu.filter(item => item.link)
 
-  console.log('-=======', menu)
-
   return (
     <section>
       <nav>
         {links.map(
           ({ link }) =>
             link.meta && (
-              <Link
-                to={linkResolver.linkResolver(link.meta)}
-                key={link.meta.uid}
-              >
+              <Link to={linkResolver(link.meta)} key={link.meta.uid}>
                 {link.meta.uid}
               </Link>
             )
