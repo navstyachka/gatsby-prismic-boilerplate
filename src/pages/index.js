@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
+import { ReactComponent as Logo } from '../images/logo.svg'
 
 export const query = graphql`
   query TestQuery {
@@ -28,6 +29,7 @@ const PageContainer = ({
 }) => {
   return (
     <Layout {...data}>
+      <Logo />
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </Layout>
   )

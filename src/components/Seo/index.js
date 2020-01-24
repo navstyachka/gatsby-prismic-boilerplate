@@ -110,7 +110,7 @@ function SEO({ description, lang, meta, title, image }) {
 }
 
 SEO.defaultProps = {
-  lang: config.defaultLang,
+  lang: config.cms.defaultLang,
   meta: [],
   title: 'Page',
   description: '',

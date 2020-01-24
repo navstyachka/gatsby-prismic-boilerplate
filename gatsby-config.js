@@ -16,9 +16,9 @@ const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
 module.exports = {
   siteMetadata: {
     siteUrl,
-    title: `Prist | Gatsby & Prismic Starter`,
-    description: `A starter powered by Gatsby and Prismic to showcase portfolios and blogs.`,
-    author: `Marguerite Roth | marguerite.io`,
+    title: config.siteMetadata.title,
+    description: config.siteMetadata.description,
+    author: config.siteMetadata.author,
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -40,11 +40,12 @@ module.exports = {
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
+    'gatsby-plugin-svgr',
     {
       resolve: 'gatsby-source-prismic-graphql',
       options: {
-        repositoryName: config.prismicRepoName,
-        defaultLang: config.defaultLang,
+        repositoryName: config.cms.prismicRepoName,
+        defaultLang: config.cms.defaultLang,
         path: '/preview',
         previews: true,
         /**
@@ -73,13 +74,13 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'gatsby-prismic-starter-prist',
-        short_name: `prist`,
-        start_url: `/`,
-        background_color: `#000`,
-        theme_color: `#000`,
-        display: `minimal-ui`,
-        icon: `src/images/icon.png`, // This path is relative to the root of the site.
+        name: config.siteMetadata.title,
+        short_name: config.siteMetadata.shortName,
+        start_url: '/',
+        background_color: '#000',
+        theme_color: '#000',
+        display: 'minimal-ui',
+        icon: 'src/images/favicon.png', // This path is relative to the root of the site.
       },
     },
     {
@@ -125,6 +126,30 @@ module.exports = {
       resolve: 'gatsby-plugin-nprogress',
       options: {
         color: '#000',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        resolveEnv: () => process.env.GATSBY_ENV,
+        env: {
+          master: {
+            policy: [{ userAgent: '*' }],
+          },
+          staging: {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+          },
+          'branch-deploy': {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+            sitemap: null,
+            host: null,
+          },
+          'deploy-preview': {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+            sitemap: null,
+            host: null,
+          },
+        },
       },
     },
   ],
